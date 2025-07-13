@@ -1,6 +1,12 @@
 import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component'; 
 import { appConfig } from './app/app.config';
-import { App } from './app/app';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
-bootstrapApplication(App, appConfig)
-  .catch((err) => console.error(err));
+bootstrapApplication(AppComponent, {
+  ...appConfig,
+  providers: [
+    ...appConfig.providers!,
+    provideAnimations()  // 👈 Asegura que Angular Material funcione
+  ]
+}).catch((err) => console.error(err));
